@@ -7,10 +7,32 @@
     <h1>Portofolio Dashboard</h1>
     <p>Welcome, {{ name }}!</p>
     <p>Welcome to your trading portfolio dashboard!</p>
-    {% for actiune in actiuni %}
-    <ul>
-      <li>{{ actiune }}</li>
-    </ul>
-    {% endfor %}
+    <form method="post" action="/">
+      <input type="text" name="simbol" placeholder="Simbol Actiune" required />
+      <input type="number" name="cantitate" placeholder="Cantitate" required />
+      <input type="submit" value="Adauga Actiune" />
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Simbol</th>
+          <th>Cantitate</th>
+          <th>Pret</th>
+          <th>Valoare Totala</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for actiune in actiuni %}
+        <tr>
+          <td>{{ actiune.simbol }}</td>
+          <td>{{ actiune.cantitate }}</td>
+          <td>{{ actiune.pret }}</td>
+          <td>{{ actiune.cantitate * actiune.pret }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><strong>Valoare Totala a Portofoliului: {{ total }}</strong></p>
   </body>
 </html>
