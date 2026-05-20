@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Portofolio Dashboard</title>
+  </head>
+  <body>
+    <h1>Portofolio Dashboard</h1>
+    <p>Welcome, {{ name }}!</p>
+    <p>Welcome to your trading portfolio dashboard!</p>
+    {% for actiune in actiuni %}
+    <ul>
+      <li>{{ actiune }}</li>
+    </ul>
+    {% endfor %}
+  </body>
+</html>
