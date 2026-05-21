@@ -3,12 +3,16 @@
   <head>
     <title>Portofolio Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
   </head>
   <body>
     <h1>Portofolio Dashboard</h1>
     <p>Welcome, {{ name }}!</p>
     <p>Welcome to your trading portfolio dashboard!</p>
-    <form method="post" action="/">
+    <form method="post" action="/" class="form">
       <input type="text" name="simbol" placeholder="Simbol Actiune" required />
       <input type="number" name="cantitate" placeholder="Cantitate" required />
       <input type="submit" value="Adauga Actiune" />
@@ -34,7 +38,9 @@
         {% endfor %}
       </tbody>
     </table>
-    <p><strong>Valoare Totala a Portofoliului: {{ total }}</strong></p>
+    <div class="total">
+      <strong>Valoare Totala a Portofoliului: {{ total }}</strong>
+    </div>
     <div style="width: 300px">
       <canvas id="graficPortofoliu"></canvas>
     </div>
