@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Portofolio Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <h1>Portofolio Dashboard</h1>
@@ -34,5 +35,21 @@
       </tbody>
     </table>
     <p><strong>Valoare Totala a Portofoliului: {{ total }}</strong></p>
+    <div style="width: 300px">
+      <canvas id="graficPortofoliu"></canvas>
+    </div>
+    <script>
+      const simboluri = {{ simboluri | tojson }};
+      const valori = {{ valori | tojson }};
+      new Chart(document.getElementById('graficPortofoliu'), {
+        type: 'pie',
+        data: {
+          labels: simboluri,
+          datasets: [{
+            data: valori
+          }]
+        }
+      });
+    </script>
   </body>
 </html>
