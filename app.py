@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import yfinance as yf
-from database import add_actiune, init_db, get_actiuni
+from database import add_actiune, init_db, get_actiuni, delete_actiune
 
 
 
@@ -26,6 +26,7 @@ def hello_trader():
         simbol = request.form['simbol']
         cantitate = int(request.form['cantitate'])
         add_actiune(simbol, cantitate)
+        return redirect(url_for('hello_trader'))
     
     actiuni_raw = get_actiuni()
     actiuni = []
@@ -34,10 +35,12 @@ def hello_trader():
     for row in actiuni_raw:
         simbol = row[1]
         cantitate = row[2]
+        id = row[0]
         pret = get_price(simbol)
         valoare = cantitate * pret
         total += valoare
         actiuni.append({
+            "id": id,
             "simbol": simbol,
             "cantitate": cantitate,
             "pret": round(pret,2),
@@ -49,6 +52,11 @@ def hello_trader():
     return render_template('index.html', name='Trader', actiuni=actiuni, total=round(total,2), simboluri=simboluri, valori=valori)
     
 
+@app.route('/delete/<int:id>')
+def sterge(id):
+    delete_actiune(id)
+    return redirect(url_for('hello_trader'))
+    
 
 
 app.run(debug=True)

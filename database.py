@@ -21,3 +21,10 @@ def get_actiuni():
     rows = cursor.fetchall()
     conn.close()
     return rows
+
+def delete_actiune(id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM actiuni WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()

@@ -15,10 +15,10 @@
     <form method="post" action="/" class="form">
       <input type="text" name="simbol" placeholder="Simbol Actiune" required />
       <input type="number" name="cantitate" placeholder="Cantitate" required />
-      <input type="submit" value="Adauga Actiune" />
+      <button type="submit">Adauga Actiune</button>
     </form>
 
-    <table>
+    <table style="width: 100%">
       <thead>
         <tr>
           <th>Simbol</th>
@@ -34,6 +34,9 @@
           <td>{{ actiune.cantitate }}</td>
           <td>{{ actiune.pret }}</td>
           <td>{{ actiune.cantitate * actiune.pret }}</td>
+          <td>
+            <a href="/delete/{{ actiune.id }}">Sterge</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
